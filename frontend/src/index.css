@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-display: 'Poppins', sans-serif;
+  --breakpoint-3xl: 1920px;
+  --color-primary: #875cf5;
+}
+
+@layer base {
+  :root {
+    --page-bg: #f6f7fb;
+    --page-text: #0f172a;
+    --muted-text: #64748b;
+    --surface-bg: #ffffff;
+    --surface-border: rgba(226, 232, 240, 0.9);
+    --surface-muted: #f8fafc;
+    --chart-axis: #64748b;
+    --chart-label: #64748b;
+    --chart-value: #0f172a;
+    --tooltip-bg: rgba(255, 255, 255, 0.96);
+    --tooltip-border: rgba(226, 232, 240, 0.9);
+  }
+
+  html.dark {
+    --page-bg: #020617;
+    --page-text: #e2e8f0;
+    --muted-text: #94a3b8;
+    --surface-bg: rgba(15, 23, 42, 0.92);
+    --surface-border: rgba(51, 65, 85, 0.95);
+    --surface-muted: rgba(15, 23, 42, 0.78);
+    --chart-axis: #94a3b8;
+    --chart-label: #94a3b8;
+    --chart-value: #f8fafc;
+    --tooltip-bg: rgba(15, 23, 42, 0.96);
+    --tooltip-border: rgba(51, 65, 85, 0.95);
+  }
+
+  html {
+    font-family: var(--font-display);
+    background-color: var(--page-bg);
+  }
+
+  body {
+    background:
+      radial-gradient(circle at top left, rgba(135, 92, 245, 0.10), transparent 26%),
+      radial-gradient(circle at bottom right, rgba(251, 146, 60, 0.10), transparent 24%),
+      var(--page-bg);
+    color: var(--page-text);
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+}
+
+.input-box {
+  @apply w-full flex justify-between gap-3 text-sm text-slate-900 bg-slate-100 rounded-xl px-4 py-3 mb-4 mt-3 border border-slate-200 outline-none shadow-sm shadow-transparent dark:text-slate-100 dark:bg-slate-900/80 dark:border-slate-700;
+}
+
+.btn-primary {
+  @apply w-full text-sm font-medium text-white bg-violet-500 shadow-lg shadow-purple-600/10 p-[10px] rounded-xl my-1 hover:bg-violet-600;
+}
+.card{
+  @apply bg-white/95 p-5 sm:p-6 rounded-2xl shadow-md shadow-slate-200/70 border border-slate-200/80 dark:bg-slate-900/90 dark:border-slate-800 dark:shadow-black/20;
+}
+
+.card-btn{
+  @apply inline-flex items-center gap-2 text-[12px] font-medium text-slate-700 hover:text-purple-500 bg-slate-50 hover:bg-purple-50 px-4 py-2 rounded-lg border border-slate-200/80 cursor-pointer dark:text-slate-200 dark:bg-slate-800/80 dark:border-slate-700 dark:hover:bg-slate-800
+}
+
+.add-btn{
+  @apply inline-flex items-center gap-1.5 text-xs md:text-sm font-medium text-purple-700 whitespace-nowrap bg-purple-50 border border-purple-100 rounded-lg px-4 py-2 cursor-pointer dark:text-purple-200 dark:bg-purple-500/10 dark:border-purple-500/20
+}
+.add-btn-fill{
+  @apply text-white bg-primary dark:bg-primary
+}
