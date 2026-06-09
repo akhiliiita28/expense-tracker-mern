@@ -19,7 +19,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 # uploads if generated/user files
-# backend/uploads/
+backend/uploads/
 
 # editor/system files
 .vscode/*
