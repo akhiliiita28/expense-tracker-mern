@@ -14,7 +14,7 @@ const app = express()
 //middleware to handle cors
 app.use(
     cors({
-        origin: process.env.CLIENT_URL || "*",
+        // origin: process.env.CLIENT_URL || "*",
         methods: ["GET", "POST", "PUT", "DELETE"],
         allowedHeaders: ["Content-Type", "Authorization"],
     })
@@ -24,7 +24,9 @@ app.use(express.json());
 
 connectDB();
 
-
+app.get("/", (req, res) => {
+    res.send("Backend Working");
+});
 
 app.use("/api/v1/auth", authRoutes)
 app.use("/api/v1/income", incomeRoutes)

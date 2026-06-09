@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import DashboardLayout from '../../components/layouts/DashboardLayout'
 import { useUserAuth } from '../../hooks/useUserAuth'
 import axiosInstance from '../../utils/axiosInstance';
@@ -13,6 +13,12 @@ const Expense = () => {
   useUserAuth();
 
   const [expenseData, setExpenseData] = useState([])
+
+  const [showSearch, setShowSearch] = useState(false)
+  const [searchQuery, setSearchQuery] = useState("")
+  const [sortType, setSortType] = useState("newest");
+  const [timeFilter, setTimeFilter] = useState("all");
+
   const [loading, setLoading] = useState(false)
   const [openDeleteAlert, setOpenDeleteAlert] = useState({
     show: false,
@@ -107,10 +113,16 @@ const Expense = () => {
 
   }
 
+  const filteredExpenses = expenseData.filter((expense) => expense.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    expense.amount.toString().includes(searchQuery.toLowerCase())
+  );
+  
+
   useEffect(() => {
     fetchExpenseDetails()
     return () => { }
   }, [])
+
 
   return (
     <DashboardLayout activeMenu="Expense">
@@ -118,13 +130,26 @@ const Expense = () => {
         <div className='grid grid-cols-1 gap-6'>
           <div className=''>
             <ExpenseOverview
-              transactions={expenseData}
+              // transactions={expenseData}
+              transactions={filteredExpenses}
+           
               onExpenseIncome={() => setOpenAddExpenseModal(true)}
             />
+            
 
           </div>
           <ExpenseList
-            transactions={expenseData}
+            // transactions={expenseD
+            transactions={filteredExpenses}
+             
+            showSearch={showSearch}
+            searchQuery={searchQuery}
+            onSearchChange={setSearchQuery}
+            onSearch={
+              () => setShowSearch((prev) => !prev)
+
+            }
+
             onDelete={(id) => {
               setOpenDeleteAlert({ show: true, data: id })
             }}

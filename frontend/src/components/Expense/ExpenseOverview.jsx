@@ -19,6 +19,7 @@ const ExpenseOverview = ({ transactions, onExpenseIncome }) => {
                         Track your spending trends over time and gain insights where your money goes.
                     </p>
                 </div>
+                
                 <button className="add-btn" onClick={onExpenseIncome}>
                     <LuPlus className="text-lg" />
                     Add Expense

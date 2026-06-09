@@ -20,6 +20,13 @@ const Income = () => {
   })
   const [openAddIncomeModal, setOpenAddIncomeModal] = useState(false)
 
+  const [showSearch, setShowSearch] = useState(false)
+  const [searchQuery, setSearchQuery] = useState("")
+
+  const filteredIcome = incomeData.filter((income) => income.source.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    income.amount.toString().includes(searchQuery.toLowerCase())
+  );
+
 
   //get All Income details
   const fetchIncomeDetails = async () => {
@@ -40,8 +47,6 @@ const Income = () => {
     }
 
   }
-
-
   //handle add income
   const handleAddIncome = async (income) => {
     const { icon, source, amount, date } = income;
@@ -69,7 +74,6 @@ const Income = () => {
     }
 
   }
-
   //delete income
   const deleteIncome = async (id) => {
     try {
@@ -81,7 +85,6 @@ const Income = () => {
       console.error("Error deleting income:", error.response?.message || error.message)
     }
   }
-
   //handle download income details
   const handleDownloadIncomeDetails = async () => {
     try {
@@ -121,14 +124,23 @@ const Income = () => {
         <div className='grid grid-cols-1 gap-6'>
           <div className=''>
             <IncomeOverview
-              transactions={incomeData}
+              // transactions={incomeData}
+              transactions={filteredIcome}
               onAddIncome={() => setOpenAddIncomeModal(true)}
             />
           </div>
 
 
           <IncomeList
-            transactions={incomeData}
+            // transactions={incomeData}
+            transactions={filteredIcome}
+            showSearch={showSearch}
+            searchQuery={searchQuery}
+            onSearchChange={setSearchQuery}
+            onSearch={
+              ()=>setShowSearch((prev)=>!prev)
+
+            }
             onDelete={(id) => {
               setOpenDeleteAlert({ show: true, data: id })
             }}

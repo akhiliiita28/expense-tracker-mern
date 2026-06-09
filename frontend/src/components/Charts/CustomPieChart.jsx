@@ -14,7 +14,8 @@ const CustomPieChart = ({
   label,
   totalAmount,
   colors = [],
-  showTextAnchor }) => {
+  showTextAnchor 
+  }) => {
   const labelColor = "var(--chart-label)";
   const valueColor = "var(--chart-value)";
 
@@ -57,7 +58,7 @@ const CustomPieChart = ({
             fill={valueColor}
             fontSize="24px"
             fontWeight="semi-bold"
-          >{totalAmount}
+          >{    }
           </text>
 
         </>

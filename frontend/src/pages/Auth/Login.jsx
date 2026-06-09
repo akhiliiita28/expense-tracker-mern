@@ -40,7 +40,7 @@ const Login = () => {
         localStorage.setItem("token", token)
         updateUser(user);
         navigate("/dashboard");
-      }
+      } 
     } catch (error) {
       if (error.response && error.response.data.message) {
         setError(error.response.data.message)

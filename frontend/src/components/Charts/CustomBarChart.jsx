@@ -32,7 +32,7 @@ const CustomBarChart = ({ data, type }) => {
                     </p>
                     {chartPoint.transactionCount > 1 && (
                         <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
-                            {chartPoint.transactionCount} entries on this day
+                             {chartPoint.transactionCount} entries on this day
                         </p>
                     )}
                 </div>
